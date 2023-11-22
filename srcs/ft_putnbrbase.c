@@ -6,7 +6,7 @@
 /*   By: jeada-si <jeada-si@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 10:29:51 by jeada-si          #+#    #+#             */
-/*   Updated: 2023/11/22 13:54:58 by jeada-si         ###   ########.fr       */
+/*   Updated: 2023/11/22 13:55:51 by jeada-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,6 @@ void	ft_putnbrbase_un(unsigned long long n, char *base)
 	if (!base || ft_anydup(base))
 		return ;
 	size = ft_strlen(base);
-	if (n < 0)
-	{
-		ft_putchar('-');
-		n *= -1;
-	}
 	ft_putnbrbase_rec_un(n, base, size);
 	return ;
 }
