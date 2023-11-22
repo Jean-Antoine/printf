@@ -6,18 +6,18 @@
 /*   By: jeada-si <jeada-si@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/06 11:25:20 by jeada-si          #+#    #+#             */
-/*   Updated: 2023/11/22 11:52:33 by jeada-si         ###   ########.fr       */
+/*   Updated: 2023/11/22 12:09:53 by jeada-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_strlen(const char *s)
+int	ft_strlen(char *str)
 {
 	int	len;
 
 	len = 0;
-	while (s[len])
+	while (str[len])
 		len++;
 	return (len);
 }

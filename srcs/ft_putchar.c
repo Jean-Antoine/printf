@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.c"
+#include "ft_printf.h"
 
-static int ft_putchar_counter(int c, int reset)
+static int	ft_putchar_counter(int c, int reset)
 {
 	static int	i;
 	int			out;
@@ -28,12 +28,12 @@ static int ft_putchar_counter(int c, int reset)
 	return (i);
 }
 
-int ft_putchar_reset()
+int	ft_putchar_reset(void)
 {
-	return(ft_putchar_counter(0, 1));
+	return (ft_putchar_counter(0, 1));
 }
 
 void	ft_putchar(int c)
-{	
+{
 	ft_putchar_counter(c, 0);
 }

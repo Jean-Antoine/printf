@@ -6,7 +6,7 @@
 /*   By: jeada-si <jeada-si@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 11:49:35 by jeada-si          #+#    #+#             */
-/*   Updated: 2023/11/22 11:50:32 by jeada-si         ###   ########.fr       */
+/*   Updated: 2023/11/22 12:33:27 by jeada-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	ft_putstr(char *str)
 {
+	if (!str)
+		return (ft_putstr("(null)"));
 	while (*str)
 		ft_putchar(*str++);
 }
