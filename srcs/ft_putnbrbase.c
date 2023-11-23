@@ -6,11 +6,12 @@
 /*   By: jeada-si <jeada-si@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 10:29:51 by jeada-si          #+#    #+#             */
-/*   Updated: 2023/11/22 13:55:51 by jeada-si         ###   ########.fr       */
+/*   Updated: 2023/11/23 14:50:17 by jeada-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+#include "libft.h"
 
 static int	ft_anydup(char *str)
 {
