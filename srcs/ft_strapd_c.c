@@ -6,11 +6,11 @@
 /*   By: jeada-si <jeada-si@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:29:45 by jeada-si          #+#    #+#             */
-/*   Updated: 2023/11/23 16:40:08 by jeada-si         ###   ########.fr       */
+/*   Updated: 2023/11/27 20:51:54 by jeada-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.c"
+#include "ft_printf.h"
 
 char	*ft_strapd_c(char *str, char c)
 {

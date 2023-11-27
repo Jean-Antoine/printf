@@ -6,7 +6,7 @@
 /*   By: jeada-si <jeada-si@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 09:24:42 by jeada-si          #+#    #+#             */
-/*   Updated: 2023/11/23 17:14:15 by jeada-si         ###   ########.fr       */
+/*   Updated: 2023/11/27 20:55:56 by jeada-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,4 +45,5 @@ typedef struct	s_field
 
 t_field	*ft_newfield(void);
 void	ft_readformat(t_field **lst, char *format);
+void	ft_readflags(t_field *field, char *format);
 #endif

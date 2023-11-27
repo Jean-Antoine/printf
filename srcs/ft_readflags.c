@@ -6,13 +6,13 @@
 /*   By: jeada-si <jeada-si@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 16:58:58 by jeada-si          #+#    #+#             */
-/*   Updated: 2023/11/23 17:24:57 by jeada-si         ###   ########.fr       */
+/*   Updated: 2023/11/27 20:55:37 by jeada-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_readflags(t_field *field, char *format)
+void	ft_readflags(char *format, t_field *field)
 {
 	while (ft_strchr(FLAGS, *format))
 	{
@@ -31,15 +31,34 @@ void	ft_readflags(t_field *field, char *format)
 			ft_readlimits(field, format);
 			while (*format == '.' || ft_isdigit(*format) || *format == '*')
 				format++;
+			format--;
 		}
+		format++;
 	}
 }
 
-static ft_readlimits(t_field *field, char *format)
+static void	ft_readlimits(t_field *field, char *format)
 {
-	if (ft_isdigit(*format))
+	if (ft_isdigit(*format) || *format == '*')
 	{
-		field->min_with = ft_atoi(format);
-		while (*format ==)
+		if (*format == '*')
+			field->min_width = -1;
+		else
+			field->min_width = ft_atoi(format);
+		while (ft_isdigit(*format) || *format == '*')
+			format ++;
+	}
+	if (*format == '.')
+	{
+		format++;
+		if (ft_isdigit(*format) || *format == '*')
+		{
+			if (*format == '*')
+				field->max_width = -1;
+			else
+				field->max_width = ft_atoi(format);
+			while (ft_isdigit(*format) || *format == '*')
+				format ++;
+		}
 	}
 }
