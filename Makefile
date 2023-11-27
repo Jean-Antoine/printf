@@ -37,6 +37,6 @@ fclean: 				clean
 
 re: 					fclean all
 
-test: 					$(NAME) main.c
-						@$(CC) $(CPPFLAGS) $(CFLAGS) -o main main.c $(NAME)
+test: 					$(NAME) .main.c
+						@$(CC) $(CPPFLAGS) $(CFLAGS) -o main .main.c $(NAME)
 						valgrind ./main
