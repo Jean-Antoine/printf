@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbrbase.c                                    :+:      :+:    :+:   */
+/*   ft_itostr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeada-si <jeada-si@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 10:29:51 by jeada-si          #+#    #+#             */
-/*   Updated: 2023/11/23 14:50:17 by jeada-si         ###   ########.fr       */
+/*   Updated: 2023/11/28 13:42:53 by jeada-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,53 +28,44 @@ static int	ft_anydup(char *str)
 	return (0);
 }
 
-static void	ft_putnbrbase_rec(long long int n, char *base, int size)
+static int	ft_nbrlen(long long int n)
 {
-	if (n < size)
+	int	i;
+
+	i = 0;
+	if (!n)
+		return (1);
+	while (n)
 	{
-		ft_putchar(base[n]);
-		return ;
+		n = n / 10;
+		i++;
 	}
-	ft_putnbrbase_rec(n / size, base, size);
-	ft_putchar(base[n % size]);
-	return ;
+	return (i);
 }
 
-void	ft_putnbrbase(long long int n, char *base)
+char	*ft_uitostr(unsigned long long int n, char *base)
 {
-	int	size;
+	int		size;
+	int		len;
+	char	*out;
 
 	if (!base || ft_anydup(base))
-		return ;
+		return (NULL);
 	size = ft_strlen(base);
+	len = ft_nbrlen(n);
+	out = (char *)ft_calloc(len + 1, sizeof(char));
+	while (len)
+	{
+		out[--len] = base[n % size];
+		n = n / size;
+	}
+	return (out);
+}
+
+char	*ft_itostr(long long int n, char *base)
+{
 	if (n < 0)
-	{
-		ft_putchar('-');
-		n *= -1;
-	}
-	ft_putnbrbase_rec(n, base, size);
-	return ;
-}
-
-static void	ft_putnbrbase_rec_un(unsigned long long n, char *base, int size)
-{
-	if (n < (unsigned int)size)
-	{
-		ft_putchar(base[n]);
-		return ;
-	}
-	ft_putnbrbase_rec(n / size, base, size);
-	ft_putchar(base[n % size]);
-	return ;
-}
-
-void	ft_putnbrbase_un(unsigned long long n, char *base)
-{
-	int	size;
-
-	if (!base || ft_anydup(base))
-		return ;
-	size = ft_strlen(base);
-	ft_putnbrbase_rec_un(n, base, size);
-	return ;
+		return (ft_strppd_c(ft_uitostr(-n, base), '-'));
+	else
+		return (ft_uitostr(n, base));
 }

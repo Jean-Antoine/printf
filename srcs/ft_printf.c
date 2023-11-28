@@ -6,48 +6,38 @@
 /*   By: jeada-si <jeada-si@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 09:50:41 by jeada-si          #+#    #+#             */
-/*   Updated: 2023/11/23 14:34:00 by jeada-si         ###   ########.fr       */
+/*   Updated: 2023/11/28 14:00:33 by jeada-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
-static void	ft_printif(char format, va_list args)
-{
-	if (format == '%')
-		ft_putchar(format);
-	else if (format == 'c')
-		ft_putchar(va_arg(args, int));
-	else if (format == 's')
-		ft_putstr(va_arg(args, char *));
-	else if (format == 'p')
-		ft_putptr(va_arg(args, void *));
-	else if (format == 'd' || format == 'i')
-		ft_putnbrbase(va_arg(args, int), "0123456789");
-	else if (format == 'u')
-		ft_putnbrbase(va_arg(args, unsigned int), "0123456789");
-	else if (format == 'x')
-		ft_putnbrbase(va_arg(args, unsigned int), "0123456789abcdef");
-	else if (format == 'X')
-		ft_putnbrbase(va_arg(args, unsigned int), "0123456789ABCDEF");
-}
+#include <stdio.h>
 
 int	ft_printf(const char *format, ...)
 {
 	va_list	args;
+	t_field	*fields;
+	t_field	*current;
 
-	ft_putchar_reset();
 	va_start(args, format);
-	while (*format)
+	fields = ft_readformat((char *)format);
+	ft_readparams(fields, args);
+	current = fields;
+	while (current)
 	{
-		if (*format != '%')
-		{
-			ft_putchar(*format++);
-			continue ;
-		}
-		format++;
-		ft_printif(*format, args);
-		format++;
+		printf("\nField values are :\ntype %c\nmin_width %d\nmax_width %d\nleft_align %d\npadded_char %c\nforce_sign %d\npositive_blank %d\ntag %d\n",
+		current->type,
+		current->min_width,
+		current->max_width,
+		current->left_align,
+		current->padded_char,
+		current->force_sign,
+		current->positive_blank,
+		current->tag);
+		if (current->str)
+			printf("str %s\n", current->str);
+		current = current->next;
 	}
-	return (ft_putchar_reset());
+	ft_clearfldlst(&fields);
+	return (1);
 }

@@ -2,14 +2,16 @@ SRCS_D =				./srcs/
 HEADER_D =				./include/
 LIBFT_D =				./libft/
 SRCS_F =				ft_printf.c\
-						ft_putnbrbase.c\
-						ft_putptr.c\
+						ft_itostr.c\
+						ft_ptrtostr.c\
 						ft_putchar.c\
-						ft_putstr.c\
 						ft_strapd_c.c\
 						ft_strppd_c.c\
 						ft_newfield.c\
-						ft_readformat.c
+						ft_readformat.c \
+						ft_readflags.c \
+						ft_readparams.c \
+						ft_clearfldlst.c
 SRCS =					$(addprefix $(SRCS_D), $(SRCS_F))
 OBJS =					$(SRCS:.c=.o)
 NAME =					libftprintf.a
@@ -40,3 +42,4 @@ re: 					fclean all
 test: 					$(NAME) .main.c
 						@$(CC) $(CPPFLAGS) $(CFLAGS) -o main .main.c $(NAME)
 						valgrind ./main
+						@rm main

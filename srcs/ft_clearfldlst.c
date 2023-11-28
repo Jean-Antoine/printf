@@ -1,21 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_clearfldlst.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeada-si <jeada-si@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 11:49:35 by jeada-si          #+#    #+#             */
-/*   Updated: 2023/11/22 12:33:27 by jeada-si         ###   ########.fr       */
+/*   Created: 2023/11/28 08:25:15 by jeada-si          #+#    #+#             */
+/*   Updated: 2023/11/28 13:42:04 by jeada-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_putstr(char *str)
+void	ft_clearfldlst(t_field **lst)
 {
-	if (!str)
-		return (ft_putstr("(null)"));
-	while (*str)
-		ft_putchar(*str++);
+	t_field	*field;
+	t_field	*next;
+
+	if (!lst || !*lst)
+		return ;
+	next = *lst;
+	while (next)
+	{
+		field = next;
+		next = field->next;
+		if (field->str)
+			free(field->str);
+		free(field);
+	}
+	*lst = NULL;
 }
