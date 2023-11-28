@@ -6,7 +6,7 @@
 /*   By: jeada-si <jeada-si@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 10:29:51 by jeada-si          #+#    #+#             */
-/*   Updated: 2023/11/28 13:42:53 by jeada-si         ###   ########.fr       */
+/*   Updated: 2023/11/28 15:16:54 by jeada-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	ft_anydup(char *str)
 	return (0);
 }
 
-static int	ft_nbrlen(long long int n)
+static int	ft_nbrlen(size_t n, int size)
 {
 	int	i;
 
@@ -37,13 +37,13 @@ static int	ft_nbrlen(long long int n)
 		return (1);
 	while (n)
 	{
-		n = n / 10;
+		n = n / size;
 		i++;
 	}
 	return (i);
 }
 
-char	*ft_uitostr(unsigned long long int n, char *base)
+char	*ft_uitostr(size_t n, char *base)
 {
 	int		size;
 	int		len;
@@ -52,7 +52,7 @@ char	*ft_uitostr(unsigned long long int n, char *base)
 	if (!base || ft_anydup(base))
 		return (NULL);
 	size = ft_strlen(base);
-	len = ft_nbrlen(n);
+	len = ft_nbrlen(n, size);
 	out = (char *)ft_calloc(len + 1, sizeof(char));
 	while (len)
 	{

@@ -1,39 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar.c                                 :+:      :+:    :+:   */
+/*   ft_applyflags.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeada-si <jeada-si@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/22 11:28:31 by jeada-si          #+#    #+#             */
-/*   Updated: 2023/11/22 11:44:09 by jeada-si         ###   ########.fr       */
+/*   Created: 2023/11/28 14:04:53 by jeada-si          #+#    #+#             */
+/*   Updated: 2023/11/28 15:23:39 by jeada-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+// #include "ft_printf.h"
 
-static int	ft_putchar_counter(int c, int reset)
-{
-	static int	i;
-	int			out;
+// static void	ft_minwidth(t_field *field)
+// {
+// 	size_t	len;
+// 	int		left_align;
 
-	if (reset)
-	{
-		out = i;
-		i = 0;
-		return (out);
-	}
-	write(1, &c, 1);
-	i++;
-	return (i);
-}
-
-int	ft_putchar_reset(void)
-{
-	return (ft_putchar_counter(0, 1));
-}
-
-void	ft_putchar(int c)
-{
-	ft_putchar_counter(c, 0);
-}
+// 	len = ft_strlen(field->str);
+// 	if (len < field->min_width)
+// 	{
+// 		if (field->left_align)
+// 			while (field->min_width++ < len)
+// 				field->str = ft_strppd_c
+// 		else
+// 			while (field->min_width++ < len)	
+// 	}
+// }

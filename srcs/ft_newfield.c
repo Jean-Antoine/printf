@@ -6,7 +6,7 @@
 /*   By: jeada-si <jeada-si@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 15:45:45 by jeada-si          #+#    #+#             */
-/*   Updated: 2023/11/28 08:51:05 by jeada-si         ###   ########.fr       */
+/*   Updated: 2023/11/28 14:30:06 by jeada-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_field	*ft_newfield(void)
 	field->str = NULL;
 	field->type = 'r';
 	field->min_width = 0;
-	field->max_width = 0;
+	field->precision = 0;
 	field->left_align = 0;
 	field->padded_char = ' ';
 	field->force_sign = 0;

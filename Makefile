@@ -4,7 +4,7 @@ LIBFT_D =				./libft/
 SRCS_F =				ft_printf.c\
 						ft_itostr.c\
 						ft_ptrtostr.c\
-						ft_putchar.c\
+						ft_putstr.c\
 						ft_strapd_c.c\
 						ft_strppd_c.c\
 						ft_newfield.c\

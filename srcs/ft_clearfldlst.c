@@ -6,7 +6,7 @@
 /*   By: jeada-si <jeada-si@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 08:25:15 by jeada-si          #+#    #+#             */
-/*   Updated: 2023/11/28 13:42:04 by jeada-si         ###   ########.fr       */
+/*   Updated: 2023/11/28 14:59:06 by jeada-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,13 @@ void	ft_clearfldlst(t_field **lst)
 		field = next;
 		next = field->next;
 		if (field->str)
+		{
+			if (field->type == 'c')
+				ft_putchar(*(field->str));
+			else
+				ft_putstr(field->str);
 			free(field->str);
+		}		
 		free(field);
 	}
 	*lst = NULL;

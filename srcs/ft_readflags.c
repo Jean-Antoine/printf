@@ -6,7 +6,7 @@
 /*   By: jeada-si <jeada-si@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 16:58:58 by jeada-si          #+#    #+#             */
-/*   Updated: 2023/11/28 13:43:52 by jeada-si         ###   ########.fr       */
+/*   Updated: 2023/11/28 14:30:11 by jeada-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ static void	ft_readlimits(t_field *field, char *format)
 		if (ft_isdigit(*format) || *format == '*')
 		{
 			if (*format == '*')
-				field->max_width = -1;
+				field->precision = -1;
 			else
-				field->max_width = ft_atoi(format);
+				field->precision = ft_atoi(format);
 			while (ft_isdigit(*format) || *format == '*')
 				format ++;
 		}
