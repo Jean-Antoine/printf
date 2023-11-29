@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_newfield.c                                      :+:      :+:    :+:   */
+/*   ft_applysign.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeada-si <jeada-si@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/23 15:45:45 by jeada-si          #+#    #+#             */
-/*   Updated: 2023/11/28 14:30:06 by jeada-si         ###   ########.fr       */
+/*   Created: 2023/11/29 09:15:41 by jeada-si          #+#    #+#             */
+/*   Updated: 2023/11/29 11:33:53 by jeada-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-t_field	*ft_newfield(void)
+void	ft_applysign(t_field *field)
 {
-	t_field	*field;
-
-	field = (t_field *)ft_calloc(1, sizeof(t_field));
-	field->str = NULL;
-	field->type = 'r';
-	field->min_width = 0;
-	field->precision = 0;
-	field->left_align = 0;
-	field->padded_char = ' ';
-	field->force_sign = 0;
-	field->positive_blank = 0;
-	field->next = NULL;
-	field->tag = 0;
-	return (field);
+	if (!ft_strchr(NUMERICSIGNEDTYPES, field->type))
+		return ;
+	if (field->negative)
+		field->str = ft_strppd_c(field->str, '-');
+	else if (field->force_sign)
+		field->str = ft_strppd_c(field->str, field->sign_char);
 }

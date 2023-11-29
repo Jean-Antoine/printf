@@ -6,7 +6,7 @@
 /*   By: jeada-si <jeada-si@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:17:52 by jeada-si          #+#    #+#             */
-/*   Updated: 2023/11/28 13:44:02 by jeada-si         ###   ########.fr       */
+/*   Updated: 2023/11/29 09:44:52 by jeada-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_field	*ft_readformat(char *format)
 	t_field	*field;
 	t_field	*lst;
 
-	field = ft_newfield();
+	field = ft_newfld();
 	lst = field;
 	while (*format)
 	{
@@ -39,13 +39,13 @@ t_field	*ft_readformat(char *format)
 		else
 		{
 			ft_readflags(++format, field);
-			while (ft_strchr(FLAGS, *format))
+			while (ft_strchr(FLAGS, *format) || ft_strchr(WIDTH, *format))
 				format++;
 			field->type = *format++;
 		}
 		if (!format || !*format)
 			break ;
-		field->next = ft_newfield();
+		field->next = ft_newfld();
 		field = field->next;
 	}
 	return (lst);

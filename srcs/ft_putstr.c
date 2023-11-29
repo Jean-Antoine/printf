@@ -38,6 +38,12 @@ void	ft_putstr(char *str)
 		ft_putcount(*str++, 0);
 }
 
+void	ft_putstr_f(char *str, size_t len)
+{
+	while (len--)
+		ft_putchar(*str++);
+}
+
 void	ft_putchar(char c)
 {
 	ft_putcount(c, 0);

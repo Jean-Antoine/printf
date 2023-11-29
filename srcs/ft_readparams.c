@@ -6,7 +6,7 @@
 /*   By: jeada-si <jeada-si@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 13:44:26 by jeada-si          #+#    #+#             */
-/*   Updated: 2023/11/28 15:06:56 by jeada-si         ###   ########.fr       */
+/*   Updated: 2023/11/29 11:00:07 by jeada-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,27 @@ static char	*ft_ctostr(char c)
 	return (out);
 }
 
-static char *ft_strdup_(char *str)
+static char	*ft_strdup_(char *str)
 {
 	if (!str)
-		return (ft_strdup("(null)"));
+		return (NULL);
 	return (ft_strdup(str));
+}
+
+static void	ft_readsignednbr(t_field *field, long long int n)
+{
+	field->negative = n < 0;
+	if (field->negative)
+		n = n * -1;
+	field->str = ft_uitostr(n, DECBASE);
 }
 
 void	ft_readparams(t_field *fields, va_list args)
 {
 	while (fields)
 	{
-		if (fields->min_width == -1)
-			fields->min_width = va_arg(args, int);
+		if (fields->width == -1)
+			fields->width = va_arg(args, int);
 		else if (fields->precision == -1)
 			fields->precision = va_arg(args, int);
 		else if (fields->type == '%')
@@ -45,13 +53,13 @@ void	ft_readparams(t_field *fields, va_list args)
 		else if (fields->type == 'p')
 			fields->str = ft_ptrtostr(va_arg(args, void *));
 		else if (fields->type == 'd' || fields->type == 'i')
-			fields->str = ft_itostr(va_arg(args, int), "0123456789");
+			ft_readsignednbr(fields, va_arg(args, int));
 		else if (fields->type == 'u')
-			fields->str = ft_itostr(va_arg(args, unsigned int), "0123456789");
+			fields->str = ft_uitostr(va_arg(args, unsigned int), DECBASE);
 		else if (fields->type == 'x')
-			fields->str = ft_itostr(va_arg(args, unsigned int), "0123456789abcdef");
+			fields->str = ft_uitostr(va_arg(args, unsigned int), HEXBASE);
 		else if (fields->type == 'X')
-			fields->str = ft_itostr(va_arg(args, unsigned int), "0123456789ABCDEF");
+			fields->str = ft_uitostr(va_arg(args, unsigned int), HEXBASEUP);
 		fields = fields->next;
 	}
 }

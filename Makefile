@@ -7,11 +7,17 @@ SRCS_F =				ft_printf.c\
 						ft_putstr.c\
 						ft_strapd_c.c\
 						ft_strppd_c.c\
-						ft_newfield.c\
+						ft_newfld.c\
 						ft_readformat.c \
 						ft_readflags.c \
 						ft_readparams.c \
-						ft_clearfldlst.c
+						ft_strpadding.c \
+						ft_applyprecision.c\
+						ft_applysign.c \
+						ft_applyhexprefix.c\
+						ft_applywidth.c\
+						ft_fldmap.c \
+						ft_clearfldlst.c 
 SRCS =					$(addprefix $(SRCS_D), $(SRCS_F))
 OBJS =					$(SRCS:.c=.o)
 NAME =					libftprintf.a
@@ -29,6 +35,8 @@ $(LIBFT):
 $(NAME):				$(LIBFT) $(OBJS)
 						ar rcs $(NAME) $(OBJS)
 
+bonus:					$(NAME)
+
 clean:
 						make -C $(LIBFT_D) clean
 						rm -f $(OBJS)
@@ -41,5 +49,5 @@ re: 					fclean all
 
 test: 					$(NAME) .main.c
 						@$(CC) $(CPPFLAGS) $(CFLAGS) -o main .main.c $(NAME)
-						valgrind ./main
+						./main
 						@rm main

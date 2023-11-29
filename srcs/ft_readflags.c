@@ -6,7 +6,7 @@
 /*   By: jeada-si <jeada-si@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 16:58:58 by jeada-si          #+#    #+#             */
-/*   Updated: 2023/11/28 14:30:11 by jeada-si         ###   ########.fr       */
+/*   Updated: 2023/11/29 11:07:32 by jeada-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ static void	ft_readlimits(t_field *field, char *format)
 	if (ft_isdigit(*format) || *format == '*')
 	{
 		if (*format == '*')
-			field->min_width = -1;
+			field->width = -1;
 		else
-			field->min_width = ft_atoi(format);
+			field->width = ft_atoi(format);
 		while (ft_isdigit(*format) || *format == '*')
 			format ++;
 	}
@@ -35,6 +35,8 @@ static void	ft_readlimits(t_field *field, char *format)
 			while (ft_isdigit(*format) || *format == '*')
 				format ++;
 		}
+		else
+			field->precision = 0;
 	}
 }
 
@@ -43,22 +45,17 @@ void	ft_readflags(char *format, t_field *field)
 	while (ft_strchr(FLAGS, *format))
 	{
 		if (*format == '-')
-			field->left_align = 1;
+			field->left = 1;
 		else if (*format == '0')
-			field->padded_char = '0';
-		else if (*format == '+')
-			field->force_sign = 1;
-		else if (*format == ' ')
-			field->positive_blank = 1;
-		else if (*format == '#')
-			field->tag = 1;
-		else if (*format == '.' || ft_isdigit(*format) || *format == '*')
+			field->zero_padded = 1;
+		else if (*format == '+' || *format == ' ')
 		{
-			ft_readlimits(field, format);
-			while (*format == '.' || ft_isdigit(*format) || *format == '*')
-				format++;
-			continue ;
+			field->force_sign = 1;
+			field->sign_char = *format;
 		}
+		else if (*format == '#')
+			field->hex_prefix = 1;
 		format++;
 	}
+	ft_readlimits(field, format);
 }

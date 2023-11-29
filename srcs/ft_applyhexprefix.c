@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_clearfldlst.c                                   :+:      :+:    :+:   */
+/*   ft_applyhexprefix.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeada-si <jeada-si@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/28 08:25:15 by jeada-si          #+#    #+#             */
-/*   Updated: 2023/11/29 08:05:31 by jeada-si         ###   ########.fr       */
+/*   Created: 2023/11/29 09:39:16 by jeada-si          #+#    #+#             */
+/*   Updated: 2023/11/29 12:02:28 by jeada-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_clearfldlst(t_field **lst)
+void	ft_applyhexprefix(t_field *field)
 {
-	t_field	*field;
-	t_field	*next;
-
-	if (!lst || !*lst)
+	if (!(field->hex_prefix && (field->type == 'x' || field->type == 'X')))
 		return ;
-	next = *lst;
-	while (next)
-	{
-		field = next;
-		next = field->next;
-		if (field->str)
-			free(field->str);
-		free(field);
-	}
-	*lst = NULL;
+	if (field->str[0] == '0' && !field->str[1])
+		return ;
+	field->str = ft_strppd_c(field->str, field->type);
+	field->str = ft_strppd_c(field->str, '0');
 }
