@@ -6,7 +6,7 @@
 /*   By: jeada-si <jeada-si@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 08:50:24 by jeada-si          #+#    #+#             */
-/*   Updated: 2023/11/29 11:56:38 by jeada-si         ###   ########.fr       */
+/*   Updated: 2023/11/29 14:51:32 by jeada-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,5 @@ void	ft_applywidth(t_field *field)
 		field->str[field->width - len] = '0';
 	}
 	if (zero_c)
-	{
-		if (field->left)
-			field->str[0] = '\0';
-		else
-			field->str[field->width - 1] = '\0';
-	}
+		field->str[!field->left * (field->width - 1)] = '\0';
 }

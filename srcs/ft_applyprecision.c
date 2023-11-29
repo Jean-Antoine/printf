@@ -6,7 +6,7 @@
 /*   By: jeada-si <jeada-si@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 08:42:36 by jeada-si          #+#    #+#             */
-/*   Updated: 2023/11/29 11:18:21 by jeada-si         ###   ########.fr       */
+/*   Updated: 2023/11/29 14:48:25 by jeada-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static char	*ft_substr_(char *str, size_t precision)
 }
 
 void	ft_applyprecision(t_field *field)
-{	
+{
 	if (field->type == 's' && !field->str)
 		if (field->precision == -2 || field->precision >= 6)
 			field->str = ft_strdup("(null)");
