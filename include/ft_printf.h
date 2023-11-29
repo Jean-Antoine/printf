@@ -6,7 +6,7 @@
 /*   By: jeada-si <jeada-si@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 09:24:42 by jeada-si          #+#    #+#             */
-/*   Updated: 2023/11/29 10:31:21 by jeada-si         ###   ########.fr       */
+/*   Updated: 2023/11/29 14:54:02 by jeada-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int		ft_printf(const char *format, ...);
 char	*ft_strapd_c(char *str, char c);
 char	*ft_strppd_c(char *str, char c);
 
-typedef struct	s_field
+typedef struct s_field
 {
 	char			*str;
 	char			type;
@@ -58,7 +58,7 @@ void	ft_clearfldlst(t_field **lst);
 void	ft_readflags(char *format, t_field *field);
 t_field	*ft_readformat(char *format);
 void	ft_readparams(t_field *fields, va_list args);
-char 	*ft_strpadding(char *str, char c, size_t size, int left_align);
+char	*ft_strpadding(char *str, char c, size_t size, int left_align);
 void	ft_applyprecision(t_field *field);
 void	ft_applysign(t_field *field);
 void	ft_applyhexprefix(t_field *field);
