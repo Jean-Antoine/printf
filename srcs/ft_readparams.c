@@ -6,7 +6,7 @@
 /*   By: jeada-si <jeada-si@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/28 13:44:26 by jeada-si          #+#    #+#             */
-/*   Updated: 2023/11/29 11:00:07 by jeada-si         ###   ########.fr       */
+/*   Updated: 2023/12/05 10:38:14 by jeada-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,15 +36,21 @@ static void	ft_readsignednbr(t_field *field, long long int n)
 	field->str = ft_uitostr(n, DECBASE);
 }
 
+static void	ft_readprecision(t_field *field, va_list args)
+{
+	if (field->width == -1)
+		field->width = va_arg(args, int);
+	if (field->precision == -1)
+		field->precision = va_arg(args, int);
+	return ;
+}
+
 void	ft_readparams(t_field *fields, va_list args)
 {
 	while (fields)
 	{
-		if (fields->width == -1)
-			fields->width = va_arg(args, int);
-		else if (fields->precision == -1)
-			fields->precision = va_arg(args, int);
-		else if (fields->type == '%')
+		ft_readprecision(fields, args);
+		if (fields->type == '%')
 			fields->str = ft_strdup("%");
 		else if (fields->type == 'c')
 			fields->str = ft_ctostr(va_arg(args, int));

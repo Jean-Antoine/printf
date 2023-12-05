@@ -6,12 +6,11 @@
 /*   By: jeada-si <jeada-si@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/22 09:50:41 by jeada-si          #+#    #+#             */
-/*   Updated: 2023/11/29 14:48:40 by jeada-si         ###   ########.fr       */
+/*   Updated: 2023/12/05 10:30:49 by jeada-si         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <stdio.h>
 
 static size_t	ft_max(size_t a, size_t b)
 {
@@ -39,6 +38,7 @@ int	ft_printf(const char *format, ...)
 	va_start(args, format);
 	fields = ft_readformat((char *)format);
 	ft_readparams(fields, args);
+	va_end(args);
 	ft_fldmap(fields, ft_applyprecision);
 	ft_fldmap(fields, ft_applysign);
 	ft_fldmap(fields, ft_applyhexprefix);

@@ -41,9 +41,9 @@ clean:
 						make -C $(LIBFT_D) clean
 						rm -f $(OBJS)
 
-fclean: 				clean
+fclean:
 						make -C $(LIBFT_D) fclean
-						rm -f $(NAME)
+						rm -f $(NAME) $(OBJS)
 
 re: 					fclean all
 
